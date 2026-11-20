@@ -1,0 +1,162 @@
+@import './styles/theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+    min-height: 100dvh;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold tracking-tight text-ink;
+  }
+  h2,
+  h3 {
+    @apply font-semibold;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-bg;
+  }
+  ::selection {
+    @apply bg-accent/30;
+  }
+}
+
+@layer components {
+  /* Material 3 filled card. */
+  .card {
+    @apply rounded-card bg-panel p-5;
+  }
+  /* Material 3 outlined text field. */
+  .input {
+    @apply block min-h-12 w-full rounded-input border border-outline bg-surface px-4 py-2.5 text-base text-ink
+      placeholder:text-muted/70 transition-colors
+      hover:border-ink
+      focus-visible:border-accent focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-0
+      disabled:opacity-50 aria-[invalid=true]:border-danger;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+  .link {
+    @apply font-semibold text-accent-ink underline-offset-4 hover:underline;
+  }
+
+  /* Checkboxes styled as Material 3 switches. */
+  .switch {
+    @apply relative h-8 w-[52px] shrink-0 cursor-pointer appearance-none rounded-full border-2 border-outline bg-raised transition-colors
+      checked:border-accent-strong checked:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .switch::before {
+    content: '';
+    @apply absolute left-[4px] top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-outline transition-all;
+  }
+  .switch:checked::before {
+    @apply left-[22px] h-6 w-6 bg-accent-fg;
+  }
+
+  /* Native <dialog>: bottom sheet on phones, centred dialog from sm up. */
+  .sheet {
+    @apply fixed inset-x-0 bottom-0 top-auto m-0 w-full max-w-none rounded-t-sheet bg-panel p-0 text-ink shadow-lift;
+  }
+  .sheet::backdrop {
+    background: rgb(0 0 0 / 0.4);
+  }
+  @media (min-width: 640px) {
+    .sheet {
+      @apply inset-0 m-auto h-fit max-w-lg rounded-sheet;
+    }
+  }
+
+  /* Journal and note reading text. */
+  .prose-steady {
+    @apply font-serif text-prose text-ink;
+  }
+  .prose-steady > * + * {
+    margin-top: 0.9em;
+  }
+  .prose-steady h1,
+  .prose-steady h2,
+  .prose-steady h3 {
+    @apply font-sans font-semibold;
+    margin-top: 1.4em;
+  }
+  .prose-steady h1 {
+    @apply text-xl;
+  }
+  .prose-steady h2 {
+    @apply text-lg;
+  }
+  .prose-steady h3 {
+    @apply text-base;
+  }
+  .prose-steady ul {
+    @apply list-disc pl-6;
+  }
+  .prose-steady ol {
+    @apply list-decimal pl-6;
+  }
+  .prose-steady blockquote {
+    @apply border-l-4 border-clay/60 pl-4 italic text-muted;
+  }
+  .prose-steady a {
+    @apply text-accent-ink underline;
+  }
+  .prose-steady code {
+    @apply rounded bg-surface px-1 font-sans text-[0.9em];
+  }
+  .prose-steady hr {
+    @apply border-border;
+  }
+
+  /* Loading placeholder with a soft moving sheen. */
+  .skeleton {
+    @apply animate-shimmer rounded-xl;
+    background-image: linear-gradient(90deg, rgb(var(--raised)) 0%, rgb(var(--panel)) 50%, rgb(var(--raised)) 100%);
+    background-size: 200% 100%;
+  }
+
+  /* Big expressive numbers for stats. */
+  .display-num {
+    @apply font-extrabold tabular-nums tracking-tight;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  /* Cards that are links lift slightly on hover (pointer devices only). */
+  .card-link {
+    @apply transition-all duration-200;
+  }
+  @media (hover: hover) {
+    .card-link:hover {
+      @apply -translate-y-0.5 bg-raised shadow-soft;
+    }
+  }
+
+  .kbd {
+    @apply inline-flex min-w-6 items-center justify-center rounded-md border border-border bg-surface px-1.5 font-sans text-xs font-semibold text-muted;
+  }
+
+  .editor-text {
+    @apply block w-full resize-none bg-transparent font-serif text-prose text-ink outline-none placeholder:text-muted/70;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

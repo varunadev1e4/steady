@@ -1,0 +1,317 @@
+/*
+ * Steady design tokens: Material 3 ("Material You") tonal palette from a
+ * calm teal-green seed. Change the look of the whole app here.
+ *
+ * Values are space-separated RGB channels so Tailwind can apply opacity
+ * (e.g. bg-accent/20). Every text/background pair used in the app was
+ * checked for WCAG AA contrast in both modes.
+ *
+ * Token → Material 3 role
+ *   bg            surface
+ *   panel         surface-container-low   (cards, sheets)
+ *   surface       surface-container-lowest / high (fields and tiles inside cards)
+ *   raised        surface-container-high  (hovered rows)
+ *   border        outline-variant         (dividers)
+ *   outline       outline                 (field and chip outlines)
+ *   ink / muted   on-surface / on-surface-variant
+ *   accent*       primary family; accent-soft = secondary-container
+ *   accent-container / on-accent-container  primary-container (FAB, hero)
+ *   clay          tertiary (streaks, highlights)
+ *   amber         warning; danger = error
+ *   inverse-*     inverse surface (snackbars)
+ */
+:root {
+  color-scheme: light;
+
+  --bg: 245 251 247; /* #F5FBF7 */
+  --panel: 235 242 238; /* #EBF2EE */
+  --surface: 255 255 255; /* #FFFFFF */
+  --raised: 227 234 230; /* #E3EAE6 */
+  --border: 191 201 196; /* #BFC9C4 */
+  --outline: 111 121 117; /* #6F7975, 3.9:1 on cards */
+
+  --ink: 23 29 27; /* #171D1B, 16:1 */
+  --muted: 63 73 70; /* #3F4946, 8:1 on cards */
+
+  --accent: 31 107 90; /* #1F6B5A primary */
+  --accent-strong: 31 107 90; /* filled buttons, white text 6.3:1 */
+  --accent-hover: 24 90 75; /* #185A4B */
+  --accent-fg: 255 255 255;
+  --accent-ink: 31 107 90; /* primary as text, 5.6:1 on cards */
+  --accent-soft: 205 232 223; /* #CDE8DF secondary-container */
+  --accent-container: 166 242 219; /* #A6F2DB primary-container */
+  --on-accent-container: 0 32 26; /* #00201A */
+
+  --clay: 138 74 36; /* #8A4A24 tertiary */
+  --clay-ink: 138 74 36; /* 6.5:1 */
+  --clay-soft: 255 219 202; /* #FFDBCA tertiary-container */
+
+  --amber: 217 161 43; /* #D9A12B */
+  --amber-ink: 110 83 0; /* #6E5300, 6.9:1 */
+  --amber-soft: 255 224 143; /* #FFE08F */
+
+  --danger: 186 26 26; /* #BA1A1A error */
+  --danger-fg: 255 255 255;
+  --danger-soft: 255 218 214; /* #FFDAD6 */
+
+  --inverse-surface: 43 50 48; /* #2B3230 */
+  --inverse-ink: 236 242 238; /* #ECF2EE */
+
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.06), 0 1px 3px 1px rgb(0 0 0 / 0.04);
+  --shadow-lift: 0 4px 8px 3px rgb(0 0 0 / 0.08), 0 1px 3px rgb(0 0 0 / 0.12);
+}
+
+:root.dark {
+  color-scheme: dark;
+
+  --bg: 15 21 19; /* #0F1513 */
+  --panel: 23 29 27; /* #171D1B */
+  --surface: 37 43 41; /* #252B29 */
+  --raised: 48 54 52; /* #303634 */
+  --border: 63 73 70; /* #3F4946 */
+  --outline: 137 147 142; /* #89938E */
+
+  --ink: 222 228 224; /* #DEE4E0 */
+  --muted: 191 201 196; /* #BFC9C4 */
+
+  --accent: 138 214 192; /* #8AD6C0 */
+  --accent-strong: 138 214 192;
+  --accent-hover: 166 242 219; /* #A6F2DB */
+  --accent-fg: 0 56 46; /* #00382E */
+  --accent-ink: 138 214 192;
+  --accent-soft: 51 75 68; /* #334B44 */
+  --accent-container: 0 81 67; /* #005143 */
+  --on-accent-container: 166 242 219; /* #A6F2DB */
+
+  --clay: 255 182 144; /* #FFB690 */
+  --clay-ink: 255 182 144;
+  --clay-soft: 107 52 22; /* #6B3416 */
+
+  --amber: 240 194 79; /* #F0C24F */
+  --amber-ink: 240 194 79;
+  --amber-soft: 74 58 0; /* #4A3A00 */
+
+  --danger: 255 180 171; /* #FFB4AB */
+  --danger-fg: 105 0 5; /* #690005 */
+  --danger-soft: 92 26 21; /* #5C1A15 */
+
+  --inverse-surface: 222 228 224;
+  --inverse-ink: 43 50 48;
+
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 1px 3px 1px rgb(0 0 0 / 0.15);
+  --shadow-lift: 0 4px 8px 3px rgb(0 0 0 / 0.3), 0 1px 3px rgb(0 0 0 / 0.3);
+}
+
+/* Habit colours (identity only; text never uses them). */
+:root {
+  --habit-sage: 31 107 90;
+  --habit-clay: 176 93 50;
+  --habit-amber: 201 145 26;
+  --habit-sky: 50 110 160;
+  --habit-plum: 128 84 150;
+  --habit-stone: 110 118 114;
+}
+:root.dark {
+  --habit-sage: 138 214 192;
+  --habit-clay: 255 182 144;
+  --habit-amber: 240 194 79;
+  --habit-sky: 148 196 240;
+  --habit-plum: 214 178 236;
+  --habit-stone: 180 190 186;
+}
+
+/* Two-series chart colours (validated for colour-blind separation). */
+:root {
+  --chart-1: 47 111 159; /* #2f6f9f */
+  --chart-2: 196 101 42; /* #c4652a */
+}
+:root.dark {
+  --chart-1: 90 152 208; /* #5a98d0 */
+  --chart-2: 214 122 60; /* #d67a3c */
+}
+
+/* Module tones for icon chips (container + matching ink, AA in both modes). */
+:root {
+  --tone-green: 205 232 223;
+  --tone-blue: 211 228 248;
+  --tone-violet: 233 221 250;
+  --tone-orange: 255 219 202;
+  --tone-yellow: 255 234 176;
+  --tone-rose: 255 217 224;
+  --tone-green-ink: 31 107 90;
+  --tone-blue-ink: 35 90 140;
+  --tone-violet-ink: 100 70 140;
+  --tone-orange-ink: 138 74 36;
+  --tone-yellow-ink: 110 83 0;
+  --tone-rose-ink: 150 50 80;
+}
+:root.dark {
+  --tone-green: 51 75 68;
+  --tone-blue: 38 58 82;
+  --tone-violet: 62 48 82;
+  --tone-orange: 92 52 28;
+  --tone-yellow: 74 58 0;
+  --tone-rose: 88 36 52;
+  --tone-green-ink: 166 242 219;
+  --tone-blue-ink: 180 214 248;
+  --tone-violet-ink: 222 204 250;
+  --tone-orange-ink: 255 200 170;
+  --tone-yellow-ink: 248 216 120;
+  --tone-rose-ink: 255 190 206;
+}
+
+/*
+ * Accent colours (Settings → Appearance). Green is the default above; each
+ * option swaps the primary family and the lightly tinted surfaces. Every pair
+ * was checked for WCAG AA contrast in both modes. Stored per device.
+ */
+:root[data-accent='blue'] {
+  --bg: 247 249 255; /* #F7F9FF */
+  --panel: 237 241 249; /* #EDF1F9 */
+  --surface: 255 255 255; /* #FFFFFF */
+  --raised: 226 231 240; /* #E2E7F0 */
+  --border: 194 199 207; /* #C2C7CF */
+  --accent: 47 98 140; /* #2F628C */
+  --accent-strong: 47 98 140; /* #2F628C */
+  --accent-hover: 35 78 115; /* #234E73 */
+  --accent-fg: 255 255 255; /* #FFFFFF */
+  --accent-ink: 47 98 140; /* #2F628C */
+  --accent-soft: 214 227 243; /* #D6E3F3 */
+  --accent-container: 207 229 255; /* #CFE5FF */
+  --on-accent-container: 0 29 51; /* #001D33 */
+}
+:root.dark[data-accent='blue'] {
+  --bg: 16 20 24; /* #101418 */
+  --panel: 24 28 32; /* #181C20 */
+  --surface: 38 42 47; /* #262A2F */
+  --raised: 49 53 58; /* #31353A */
+  --border: 66 71 78; /* #42474E */
+  --accent: 154 203 250; /* #9ACBFA */
+  --accent-strong: 154 203 250; /* #9ACBFA */
+  --accent-hover: 207 229 255; /* #CFE5FF */
+  --accent-fg: 0 51 82; /* #003352 */
+  --accent-ink: 154 203 250; /* #9ACBFA */
+  --accent-soft: 58 72 87; /* #3A4857 */
+  --accent-container: 11 74 114; /* #0B4A72 */
+  --on-accent-container: 207 229 255; /* #CFE5FF */
+}
+:root[data-accent='purple'] {
+  --bg: 253 247 255; /* #FDF7FF */
+  --panel: 243 237 247; /* #F3EDF7 */
+  --surface: 255 255 255; /* #FFFFFF */
+  --raised: 236 230 240; /* #ECE6F0 */
+  --border: 202 196 208; /* #CAC4D0 */
+  --accent: 103 80 164; /* #6750A4 */
+  --accent-strong: 103 80 164; /* #6750A4 */
+  --accent-hover: 82 62 138; /* #523E8A */
+  --accent-fg: 255 255 255; /* #FFFFFF */
+  --accent-ink: 103 80 164; /* #6750A4 */
+  --accent-soft: 232 222 248; /* #E8DEF8 */
+  --accent-container: 234 221 255; /* #EADDFF */
+  --on-accent-container: 33 0 93; /* #21005D */
+}
+:root.dark[data-accent='purple'] {
+  --bg: 20 18 24; /* #141218 */
+  --panel: 29 27 32; /* #1D1B20 */
+  --surface: 43 41 48; /* #2B2930 */
+  --raised: 54 52 59; /* #36343B */
+  --border: 73 69 79; /* #49454F */
+  --accent: 208 188 255; /* #D0BCFF */
+  --accent-strong: 208 188 255; /* #D0BCFF */
+  --accent-hover: 234 221 255; /* #EADDFF */
+  --accent-fg: 56 30 114; /* #381E72 */
+  --accent-ink: 208 188 255; /* #D0BCFF */
+  --accent-soft: 74 68 88; /* #4A4458 */
+  --accent-container: 79 55 139; /* #4F378B */
+  --on-accent-container: 234 221 255; /* #EADDFF */
+}
+:root[data-accent='orange'] {
+  --bg: 255 248 245; /* #FFF8F5 */
+  --panel: 252 238 232; /* #FCEEE8 */
+  --surface: 255 255 255; /* #FFFFFF */
+  --raised: 244 228 220; /* #F4E4DC */
+  --border: 216 194 184; /* #D8C2B8 */
+  --accent: 154 74 30; /* #9A4A1E */
+  --accent-strong: 154 74 30; /* #9A4A1E */
+  --accent-hover: 122 58 22; /* #7A3A16 */
+  --accent-fg: 255 255 255; /* #FFFFFF */
+  --accent-ink: 154 74 30; /* #9A4A1E */
+  --accent-soft: 246 222 211; /* #F6DED3 */
+  --accent-container: 255 219 204; /* #FFDBCC */
+  --on-accent-container: 53 16 0; /* #351000 */
+}
+:root.dark[data-accent='orange'] {
+  --bg: 26 18 14; /* #1A120E */
+  --panel: 34 26 22; /* #221A16 */
+  --surface: 49 40 36; /* #312824 */
+  --raised: 61 50 45; /* #3D322D */
+  --border: 83 67 60; /* #53433C */
+  --accent: 255 182 143; /* #FFB68F */
+  --accent-strong: 255 182 143; /* #FFB68F */
+  --accent-hover: 255 219 204; /* #FFDBCC */
+  --accent-fg: 85 32 0; /* #552000 */
+  --accent-ink: 255 182 143; /* #FFB68F */
+  --accent-soft: 93 64 50; /* #5D4032 */
+  --accent-container: 120 50 17; /* #783211 */
+  --on-accent-container: 255 219 204; /* #FFDBCC */
+}
+:root[data-accent='yellow'] {
+  --bg: 255 249 238; /* #FFF9EE */
+  --panel: 249 243 229; /* #F9F3E5 */
+  --surface: 255 255 255; /* #FFFFFF */
+  --raised: 238 232 218; /* #EEE8DA */
+  --border: 205 198 180; /* #CDC6B4 */
+  --accent: 105 95 0; /* #695F00 */
+  --accent-strong: 105 95 0; /* #695F00 */
+  --accent-hover: 81 72 0; /* #514800 */
+  --accent-fg: 255 255 255; /* #FFFFFF */
+  --accent-ink: 105 95 0; /* #695F00 */
+  --accent-soft: 235 227 189; /* #EBE3BD */
+  --accent-container: 248 226 135; /* #F8E287 */
+  --on-accent-container: 32 28 0; /* #201C00 */
+}
+:root.dark[data-accent='yellow'] {
+  --bg: 21 19 11; /* #15130B */
+  --panel: 30 28 19; /* #1E1C13 */
+  --surface: 44 42 33; /* #2C2A21 */
+  --raised: 55 53 43; /* #37352B */
+  --border: 74 71 57; /* #4A4739 */
+  --accent: 219 198 110; /* #DBC66E */
+  --accent-strong: 219 198 110; /* #DBC66E */
+  --accent-hover: 248 226 135; /* #F8E287 */
+  --accent-fg: 58 48 0; /* #3A3000 */
+  --accent-ink: 219 198 110; /* #DBC66E */
+  --accent-soft: 75 71 50; /* #4B4732 */
+  --accent-container: 83 70 0; /* #534600 */
+  --on-accent-container: 248 226 135; /* #F8E287 */
+}
+:root[data-accent='pink'] {
+  --bg: 255 248 248; /* #FFF8F8 */
+  --panel: 250 239 241; /* #FAEFF1 */
+  --surface: 255 255 255; /* #FFFFFF */
+  --raised: 242 229 232; /* #F2E5E8 */
+  --border: 213 194 198; /* #D5C2C6 */
+  --accent: 140 74 96; /* #8C4A60 */
+  --accent-strong: 140 74 96; /* #8C4A60 */
+  --accent-hover: 113 51 71; /* #713347 */
+  --accent-fg: 255 255 255; /* #FFFFFF */
+  --accent-ink: 140 74 96; /* #8C4A60 */
+  --accent-soft: 242 221 226; /* #F2DDE2 */
+  --accent-container: 255 217 226; /* #FFD9E2 */
+  --on-accent-container: 58 7 29; /* #3A071D */
+}
+:root.dark[data-accent='pink'] {
+  --bg: 25 17 19; /* #191113 */
+  --panel: 34 25 28; /* #22191C */
+  --surface: 49 40 42; /* #31282A */
+  --raised: 60 50 53; /* #3C3235 */
+  --border: 81 67 71; /* #514347 */
+  --accent: 255 177 200; /* #FFB1C8 */
+  --accent-strong: 255 177 200; /* #FFB1C8 */
+  --accent-hover: 255 217 226; /* #FFD9E2 */
+  --accent-fg: 84 29 50; /* #541D32 */
+  --accent-ink: 255 177 200; /* #FFB1C8 */
+  --accent-soft: 90 63 71; /* #5A3F47 */
+  --accent-container: 112 51 72; /* #703348 */
+  --on-accent-container: 255 217 226; /* #FFD9E2 */
+}
